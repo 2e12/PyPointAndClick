@@ -8,13 +8,14 @@ class Display:
     stage: Stage = None
     running = True
     screen = None
-    size = (300, 200)
+    size = (600, 500)
 
     def __init__(self, stage: Stage):
         self.stage = stage
+        stage.scale_factor = self.get_stage_scale_factor()
+        self.py_game_init()
 
     def loop(self):
-        self.py_game_init()
         clock = pygame.time.Clock()
         while self.running:
             clock.tick(self.stage.fps)
@@ -29,3 +30,10 @@ class Display:
             if event.type == pygame.QUIT:
                 self.running = False
 
+    def get_stage_scale_factor(self):
+        scale_width = self.size[0] / self.stage.origin_size[0]
+        scale_height = self.size[1] / self.stage.origin_size[1]
+        if scale_width < scale_height:
+            return scale_width
+        else:
+            return scale_height
