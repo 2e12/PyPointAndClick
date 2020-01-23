@@ -1,6 +1,7 @@
 import pygame
 
 from engine.stage import Stage
+from engine import color
 
 
 class Display:
@@ -20,6 +21,15 @@ class Display:
         while self.running:
             clock.tick(self.stage.fps)
             self.handle_events()
+            self.draw()
+
+    def reset_display(self):
+        self.screen.fill(color.BLACK)
+
+    def draw(self):
+        self.reset_display()
+        self.screen.blit(self.stage.draw(), (0,0))
+        pygame.display.flip()
 
     def py_game_init(self):
         pygame.init()
