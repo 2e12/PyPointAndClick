@@ -22,5 +22,7 @@ class Stage:
 
     def draw(self):
         self.reset_display()
-        return self.screen
+        width = int(self.origin_size[0] * self.scale_factor)
+        height = int(self.origin_size[1] * self.scale_factor)
+        return pygame.transform.scale(self.screen, (width, height))
 
