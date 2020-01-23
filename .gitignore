@@ -1,2 +1,4 @@
 data/*
 engine/__pycache__/
+.idea/
+.python-version
