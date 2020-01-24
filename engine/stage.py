@@ -2,6 +2,7 @@ import pygame
 
 from pygame import Surface
 from engine import color
+from engine.scene import Scene
 
 
 class Stage:
@@ -10,16 +11,21 @@ class Stage:
     fps = 30
     scale_factor = 1
     screen = None
+    scene = None
 
-    def __init__(self, resolution):
-        self.origin_size = resolution
-        self.create_surface()
+    def __init__(self, scene):
+        self.set_scene(scene)
 
     def create_surface(self):
         self.screen = Surface(self.origin_size)
 
     def reset_display(self):
         self.screen.fill(color.WHITE)
+
+    def set_scene(self, scene: Scene):
+        self.origin_size = scene.size
+        self.scene = scene
+        self.create_surface()
 
     def convert_mouse_position_to_origin_size(self, position):
         factor = self.scale_factor
@@ -37,5 +43,6 @@ class Stage:
         self.reset_display()
         width = int(self.origin_size[0] * self.scale_factor)
         height = int(self.origin_size[1] * self.scale_factor)
+        self.screen.blit(self.scene.draw(), (0, 0))
         return pygame.transform.scale(self.screen, (width, height))
 

@@ -1,6 +1,9 @@
 from engine.display import Display
+from engine.scene.Scene import Scene
 from engine.stage import Stage
 
-stage = Stage((250, 250))
+
+scene = Scene("test.png")
+stage = Stage(scene)
 
 Display(stage).loop()
