@@ -1,6 +1,6 @@
 from engine.display import Display
 from engine.stage import Stage
 
-stage = Stage((500, 400))
+stage = Stage((250, 250))
 
 Display(stage).loop()

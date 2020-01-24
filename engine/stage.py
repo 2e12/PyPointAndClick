@@ -5,7 +5,8 @@ from engine import color
 
 
 class Stage:
-    origin_size = (250, 250)
+    origin_size = None
+    mouse_pos = (0, 0)
     fps = 30
     scale_factor = 1
     screen = None
@@ -19,6 +20,18 @@ class Stage:
 
     def reset_display(self):
         self.screen.fill(color.WHITE)
+
+    def convert_mouse_position_to_origin_size(self, position):
+        factor = self.scale_factor
+        x = position[0] / factor
+        y = position[1] / factor
+        return x, y
+
+    def on_mouse_move(self, position):
+        self.mouse_pos = self.convert_mouse_position_to_origin_size(position)
+
+    def on_mouse_click(self, position):
+        self.mouse_pos = self.convert_mouse_position_to_origin_size(position)
 
     def draw(self):
         self.reset_display()

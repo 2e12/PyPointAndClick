@@ -10,7 +10,7 @@ class Display:
     stage: Stage = None
     running = True
     screen = None
-    size = (800, 650)
+    size = (650, 650)
 
     def __init__(self, stage: Stage):
         self.stage = stage
@@ -30,7 +30,7 @@ class Display:
 
     def draw(self):
         self.reset_display()
-        self.screen.blit(self.stage.draw(), (0,0))
+        self.screen.blit(self.stage.draw(), (0, 0))
         pygame.display.flip()
 
     def init_screen(self):
@@ -43,6 +43,13 @@ class Display:
             if event.type == pygame.VIDEORESIZE:
                 self.size = (event.w, event.h)
                 self.init_screen()
+            if event.type == pygame.MOUSEMOTION:
+                self.stage.on_mouse_move(self.get_mouse_pos())
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.stage.on_mouse_click(self.get_mouse_pos())
+
+    def get_mouse_pos(self):
+        return pygame.mouse.get_pos()
 
     def set_stage_scale_factor(self):
         self.stage.scale_factor = self.get_stage_scale_factor()
