@@ -2,7 +2,7 @@ import pygame
 
 from pygame import Surface
 from engine import color
-from engine.scene import Scene
+from engine.scene.scene import Scene
 
 
 class Stage:
@@ -44,5 +44,7 @@ class Stage:
         width = int(self.origin_size[0] * self.scale_factor)
         height = int(self.origin_size[1] * self.scale_factor)
         self.screen.blit(self.scene.draw(), (0, 0))
+
+        # Scale stage up to the size of the display.
         return pygame.transform.scale(self.screen, (width, height))
 
