@@ -1,3 +1,5 @@
+from typing import Tuple
+
 import pygame
 
 from pygame import Surface
@@ -6,14 +8,14 @@ from engine.scene.scene import Scene
 
 
 class Stage:
-    origin_size = None
+    origin_size: Tuple[int, int] = None
     mouse_pos = (0, 0)
-    fps = 30
-    scale_factor = 1
-    screen = None
-    scene = None
+    fps: int = 30
+    scale_factor: int = 1
+    screen: pygame.Surface = None
+    scene: Scene = None
 
-    def __init__(self, scene):
+    def __init__(self, scene: Scene):
         self.set_scene(scene)
 
     def create_surface(self):
