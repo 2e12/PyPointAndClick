@@ -13,7 +13,7 @@ class Object:
 
     def set_image(self, image):
         self.screen = pygame.image.load(image)
-        self.size = self.image.get_rect().size
+        self.size = self.screen.get_rect().size
 
     def draw(self):
         return self.screen
