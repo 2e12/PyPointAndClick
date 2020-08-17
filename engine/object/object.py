@@ -10,11 +10,11 @@ class Object:
     size = None
     position = None
     animation: Animation = None
-    _onclick_handlers: List[Callable[[Object], None]] = []
 
     def __init__(self, image, position):
         self.set_image(image)
         self.position = position
+        self._onclick_handlers: List[Callable[[Object], None]] = []
 
     def set_image(self, image):
         self.screen = pygame.image.load(image)
