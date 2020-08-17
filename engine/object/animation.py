@@ -9,10 +9,8 @@ class Animation:
             if target > position[index]:
                 position[index] += int(self.speed)
                 ended = False
-                print("front")
             if target < position[index]:
                 position[index] -= int(self.speed)
-                print("back")
                 ended = False
 
         return ended
