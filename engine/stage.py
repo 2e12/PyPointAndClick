@@ -39,7 +39,12 @@ class Stage:
         self.scene.on_mouse_move(self.convert_mouse_position_to_origin_size(position))
 
     def on_mouse_click(self, position):
-        self.scene.on_mouse_click(self.convert_mouse_position_to_origin_size(position))
+        click_position = self.convert_mouse_position_to_origin_size(position)
+        self.scene.on_mouse_click(click_position)
+        for object in self.scene.objects:
+            if object.get_rect().collidepoint(click_position):
+                for handler in object.get_on_click_handlers():
+                    handler(object)
 
     def draw(self):
         self.reset_display()
