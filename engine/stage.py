@@ -31,15 +31,15 @@ class Stage:
 
     def convert_mouse_position_to_origin_size(self, position):
         factor = self.scale_factor
-        x = position[0] / factor
-        y = position[1] / factor
+        x = int(position[0] / factor)
+        y = int(position[1] / factor)
         return x, y
 
     def on_mouse_move(self, position):
-        self.mouse_pos = self.convert_mouse_position_to_origin_size(position)
+        self.scene.on_mouse_move(self.convert_mouse_position_to_origin_size(position))
 
     def on_mouse_click(self, position):
-        self.mouse_pos = self.convert_mouse_position_to_origin_size(position)
+        self.scene.on_mouse_click(self.convert_mouse_position_to_origin_size(position))
 
     def draw(self):
         self.reset_display()

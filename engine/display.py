@@ -26,7 +26,7 @@ class Display:
             self.draw()
 
     def reset_display(self):
-        self.screen.fill(color.GREY)
+        self.screen.fill(color.BLACK)
 
     def draw(self):
         self.reset_display()
