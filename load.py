@@ -10,9 +10,11 @@ class Load:
     scenes = []
 
     def __init__(self):
+        self.stage = Stage()
         self.load("data")
-        stage = Stage(self.scenes[0])
-        Display(stage).loop()
+        self.stage.set_scene(self.scenes[0])
+        self.stage.scenes = self.scenes
+        Display(self.stage).loop()
 
     def load(self, path):
         for file in os.listdir(path):
@@ -20,6 +22,8 @@ class Load:
                 if os.path.exists("{}/{dir}/{dir}.py".format(path, dir=file)):
                     import_path = "{}.{dir}.{dir}".format(path, dir=file)
                     scene_module = importlib.import_module(import_path)
+                    scene_module.scene.stage = self.stage
+                    print(self.stage)
                     self.scenes.append(scene_module.scene)
 
 

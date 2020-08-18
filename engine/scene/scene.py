@@ -6,15 +6,28 @@ from engine.object.object import Object
 
 class Scene:
 
-    objects = []
     background = None
     size = None
     screen = None
     player: Object = None
+    stage = None
     mouse_pos = [0, 0]
 
-    def __init__(self, background):
+    def __init__(self, background, name):
+        self.objects = []
         self.load_background(background)
+        self.name = name
+
+    def switch_scene(self, scene_nr: int):
+        if self.stage:
+            self.stage.set_scene(self.stage.scenes[scene_nr])
+
+    def switch_scene(self, scene_name: str):
+        if self.stage:
+            for scene in self.stage.scenes:
+                if scene.name == scene_name:
+                    self.stage.set_scene(scene)
+                    break
 
     def load_background(self, background):
         self.background = pygame.image.load(background)
