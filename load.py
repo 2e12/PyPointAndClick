@@ -23,7 +23,6 @@ class Load:
                     import_path = "{}.{dir}.{dir}".format(path, dir=file)
                     scene_module = importlib.import_module(import_path)
                     scene_module.scene.stage = self.stage
-                    print(self.stage)
                     self.scenes.append(scene_module.scene)
 
 
