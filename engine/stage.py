@@ -14,9 +14,7 @@ class Stage:
     scale_factor: int = 1
     screen: pygame.Surface = None
     scene: Scene = None
-
-    def __init__(self, scene: Scene):
-        self.set_scene(scene)
+    scenes = []
 
     def create_surface(self):
         self.screen = Surface(self.origin_size)
@@ -25,6 +23,8 @@ class Stage:
         self.screen.fill(color.WHITE)
 
     def set_scene(self, scene: Scene):
+        if scene not in self.scenes:
+            self.scenes.append(scene)
         self.origin_size = scene.size
         self.scene = scene
         self.create_surface()
